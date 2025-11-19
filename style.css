@@ -466,7 +466,8 @@ button:focus {
     position: fixed;
     right: 25px;
     /* bottom: 20%; */
-    top: 26px;
+    /* top: 26px; */
+    bottom: 115px;
     z-index: 9999;
 
     & a {
@@ -485,49 +486,50 @@ button:focus {
 
 
 .area-anuncio {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000d1;
+}
+
+.anuncio {
+    width: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    height: 700px;
+
+    & button {
         position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
+        background-color: #ffffff;
+        width: 40px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #000000d1;
+        border-radius: 100%;
+        font-size: 1rem;
+        border: 2px solid #0000007a;
+        color: #000000;
+        cursor: pointer;
     }
 
-    .anuncio {
-        width: 430px;
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        height: 700px;
-        & button {
-            position: fixed;
-            background-color: #ffffff;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 100%;
-            font-size: 1rem;
-            border: 2px solid #0000007a;
-            color: #000000;
-            cursor: pointer;
-        }
+    & div {
+        width: 100%;
+        /* background-color: #f9e4f1; */
+        height: 100%;
 
-        & div {
+        & img {
             width: 100%;
-            background-color: #f9e4f1;
-            height: 100%;
-
-            & img {
-                width: 100%;
-            }
         }
     }
+}
 
 
 @media (max-width: 768px) {
@@ -613,6 +615,8 @@ button:focus {
     .area-itens {
         gap: 17px;
         overflow-y: scroll;
+        padding-bottom: 80px;
+        padding-top: 124px;
     }
 
     .categoria-book {
@@ -656,6 +660,10 @@ button:focus {
         width: 100%;
         margin-top: 11px;
         margin-bottom: 22px;
+
+        position: absolute;
+        top: 21px;
+        left: 0%;
 
         & h1 {
             text-transform: uppercase;
@@ -740,6 +748,7 @@ button:focus {
         flex-direction: column;
         align-items: end;
         height: initial;
+
         & button {
             position: fixed;
             background-color: #ffffff;
