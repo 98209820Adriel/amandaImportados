@@ -1,0 +1,779 @@
+* {
+    font-family: 'Lato-WR';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#prev-btn,
+#next-btn {
+    height: 47px !important;
+    background-color: azure !important;
+}
+
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    background-color: powderblue;
+}
+
+/* BOOK: ocupa quase a tela inteira */
+.book {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 956px;
+    max-height: 684px;
+    box-shadow: 16px 14px 20px 9px #00000021;
+
+}
+
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    perspective: 1500px;
+}
+
+/* FRONT = página inteira */
+.front {
+    background-color: white;
+    position: absolute;
+    inset: 0;
+    transform-origin: left;
+    transition: transform 0.6s ease;
+    backface-visibility: hidden;
+    border-left: 3px solid powderblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BACK não é usado visualmente */
+.back {
+    display: none;
+}
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Efeito de virar (some dobrando) */
+.flipped .front {
+    transform: rotateY(-100deg);
+}
+
+/* Botões */
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s;
+    font-size: 18px;
+    padding: 6px 14px;
+    border-radius: 14px;
+    background: #ffffff55;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    background: #ffffffaa;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Ordem da pilha (topo) */
+#p1 {
+    z-index: 3;
+}
+
+#p2 {
+    z-index: 2;
+}
+
+#p3 {
+    z-index: 1;
+}
+
+
+
+
+
+/* parte minha */
+.area-itens {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    padding: 4% 7%;
+    justify-content: space-between;
+
+}
+
+.item {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    /* background-color: antiquewhite; */
+
+    & img {
+        width: 50%;
+        z-index: 2;
+        filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.3)) drop-shadow(0px 10px 19px rgba(0, 0, 0, 0.2));
+    }
+}
+
+
+.item-info {
+    & p {
+        font-size: 1.05rem;
+        text-align: justify;
+
+    }
+}
+
+.item-valores {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 4px;
+    flex-direction: column;
+
+    & h3 {
+        font-size: 1.5rem;
+    }
+
+    & h5 {
+        font-size: 1rem;
+    }
+}
+
+
+/* formas */
+.blob {
+    width: 0px;
+
+    & div {
+        width: 159px;
+        height: 173px;
+        /* border-radius: 186% 40% 134% 36% / 120% 61% 110% 34%; */
+        border-radius: 132% 62% 152% 38% / 133% 65% 125% 53%;
+        position: relative;
+        left: -22px;
+        rotate: 17deg;
+    }
+
+}
+
+#app {
+    display: flex;
+    align-items: center;
+}
+
+.categ-item {
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 11px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 3px;
+    box-shadow: 1px 0px 6px 1px #0000002b;
+    border-top: 2px #00000014 inset;
+    border-left: 2px #00000014 inset;
+    border-right: 2px #00000014 inset;
+    padding-left: 24px;
+    position: relative;
+    height: 40px;
+
+    & img {
+        display: none;
+    }
+}
+
+.ativo-categ {
+    height: 55px !important;
+    z-index: 99 !important;
+}
+
+.categoria-book {
+    display: flex;
+    align-items: end;
+    position: relative;
+    left: 3px;
+}
+
+.blub-masc-perf {
+    background: #ffa151;
+
+    background: linear-gradient(0deg, #2c2c2c -14%, #2c2c2c14 9%, rgba(255, 255, 255, 1) 61%, #2c2c2c14 85%, #2c2c2c 117%);
+}
+
+/* area perfume masculino */
+.perf-masc-a {
+    background: linear-gradient(0deg, #f27405a8 -14%, #f274052e 9%, rgba(255, 255, 255, 1) 61%, #f274052e 85%, #f27405a8 117%);
+}
+
+.perf-masc {
+    & div {
+        background: #ff9538;
+    }
+}
+
+.perf-masc-d {
+    & p {
+        color: #FF3C00;
+    }
+
+}
+
+.perf-masc-t {
+    & h3 {
+        color: #400F00;
+    }
+
+    & h5 {
+        color: #801E00;
+    }
+}
+
+.perf-masc-c {
+    & div {
+        background-color: #dd6803;
+    }
+}
+
+/* fim */
+
+/* perfume feminino */
+.perf-femn-a {
+    background: linear-gradient(0deg, rgb(255 196 196) -14%, rgba(255, 247, 247, 1) 9%, rgba(255, 255, 255, 1) 61%, rgba(255, 247, 247, 1) 85%, rgba(255, 196, 196, 1) 117%);
+}
+
+.perf-femn {
+    & div {
+        background: #ffc4c4;
+    }
+}
+
+.perf-femn-d {
+    & p {
+        color: #593B46;
+    }
+}
+
+.perf-femn-t {
+    & h3 {
+        color: #593B46;
+    }
+
+    & h5 {
+        color: #fbb0b0;
+    }
+}
+
+.perf-femn-c {
+    & div {
+        background-color: #ff8686;
+    }
+}
+
+/* fim  */
+
+/* perfume feminino */
+.cosmet-a {
+    background: linear-gradient(0deg, #44e3d3b3 -14%, #44e3d324 9%, rgba(255, 255, 255, 1) 61%, #44e3d324 85%, #44e3d3b3 117%);
+}
+
+.cosmet {
+    & div {
+        background: #44E3D3;
+    }
+}
+
+.cosmet-d {
+    & p {
+        color: #536e36;
+    }
+}
+
+.cosmet-t {
+    & h3 {
+        color: #00635A;
+    }
+
+    & h5 {
+        color: #00b1a0;
+    }
+}
+
+.cosmet-c {
+    & div {
+        background-color: #0aa696;
+    }
+}
+
+/* fim  */
+
+
+/* perfume feminino */
+.eletro-a {
+    background: linear-gradient(0deg, #0098ff69 -14%, #0098ff36 9%, rgba(255, 255, 255, 1) 61%, #0098ff36 85%, #0098ff69 117%);
+}
+
+.eletro {
+    & div {
+        background: #0098FF;
+    }
+}
+
+.eletro-d {
+    & p {
+        color: #004C7F;
+    }
+}
+
+.eletro-t {
+    & h3 {
+        color: #007ACC;
+    }
+
+    & h5 {
+        color: #24618a;
+    }
+}
+
+.eletro-c {
+    & div {
+        background-color: #0164a7;
+    }
+}
+
+/* fim  */
+
+/* perfume feminino */
+.bebida-a {
+    background: linear-gradient(0deg, #d9292961 -14%, #d9292940 9%, rgba(255, 255, 255, 1) 61%, #d9292940 85%, #d9292961 117%);
+}
+
+.bebida {
+    & div {
+        background: #ff6969;
+    }
+}
+
+.bebida-d {
+    & p {
+        color: #8C1F1F;
+    }
+}
+
+.bebida-t {
+    & h3 {
+        color: #6c0909;
+    }
+
+    & h5 {
+        color: #cd3714;
+    }
+}
+
+.bebida-c {
+    & div {
+        background-color: #de1d1d;
+    }
+}
+
+/* fim  */
+
+.capacidade {
+    width: 0;
+
+    & div {
+        position: relative;
+        z-index: 9;
+        width: 44px;
+        height: 44px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        top: 60px;
+        right: 22px;
+        color: #fff;
+    }
+}
+
+.promocao {
+    width: 0;
+
+    & div {
+        position: relative;
+        z-index: 10;
+        left: 107px;
+        bottom: 61px;
+        background-color: #ff0d75;
+        /* background-color: #7da40f; */
+        width: 52px;
+        height: 52px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 93%;
+        /* padding: 13px; */
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+
+        & p {
+            border: 2px solid #fff;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+        }
+    }
+}
+
+.titulo {
+    display: none;
+}
+
+.whats {
+    position: fixed;
+    right: 25px;
+    /* bottom: 20%; */
+    top: 26px;
+    z-index: 9999;
+
+    & a {
+        text-decoration: none;
+        width: 43px;
+        height: 43px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 23px;
+        background-color: #24a924;
+        color: #fff;
+        border-radius: 100%;
+    }
+}
+
+
+.area-anuncio {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000d1;
+    }
+
+    .anuncio {
+        width: 430px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        height: 700px;
+        & button {
+            position: fixed;
+            background-color: #ffffff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            font-size: 1rem;
+            border: 2px solid #0000007a;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        & div {
+            width: 100%;
+            background-color: #f9e4f1;
+            height: 100%;
+
+            & img {
+                width: 100%;
+            }
+        }
+    }
+
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .book {
+        width: 100%;
+        /* height: 100vh; */
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .item {
+        width: 100%;
+    }
+
+    #app {
+        width: 100%;
+        height: 100%;
+    }
+
+    #area-book {
+        width: 100%;
+        height: 100%;
+    }
+
+    #prev-btn {
+        margin: 6px;
+        transition: transform 0.2s;
+        font-size: 18px;
+        padding: 6px 7px;
+        border-radius: 14px;
+        background: #ffffff55;
+        /* width: 0; */
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        background-color: #0000004d !important;
+        height: 35px !important;
+        width: 35px !important;
+    }
+
+    #next-btn {
+        margin: 6px;
+        transition: transform 0.2s;
+        font-size: 18px;
+        padding: 6px 7px;
+        border-radius: 14px;
+        background: #ffffff55;
+        /* width: 0; */
+        position: fixed;
+        z-index: 999;
+        right: 11px;
+        background-color: #0000004d !important;
+        height: 35px !important;
+        width: 35px !important;
+    }
+
+    .item-img {
+        & img {
+            width: 38%;
+        }
+    }
+
+    .blob {
+        & div {
+            width: 42vw;
+        }
+    }
+
+    .item-info {
+        padding-left: 32px;
+
+        & p {
+            text-align: start;
+        }
+    }
+
+    .area-itens {
+        gap: 17px;
+        overflow-y: scroll;
+    }
+
+    .categoria-book {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 99;
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .categ-item {
+        padding: 0px;
+        left: 0;
+        right: 0;
+        width: 44px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & span {
+            display: none;
+        }
+
+        & img {
+            display: block;
+        }
+    }
+
+    .ativo-categ {
+        width: 58px !important;
+        height: 49px !important;
+    }
+
+    .titulo {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: 11px;
+        margin-bottom: 22px;
+
+        & h1 {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        & h2 {
+            font-size: 1.5rem;
+            margin-top: 8px;
+        }
+    }
+
+    .perf-femn-r {
+        & h1 {
+            color: #593B46;
+        }
+
+        & h2 {
+            color: #f77474;
+
+        }
+    }
+
+    .perf-masc-r {
+        & h1 {
+            color: #400F00;
+        }
+
+        & h2 {
+            color: #f07000;
+
+        }
+    }
+
+    .cosmet-r {
+        & h1 {
+            color: #00635A;
+        }
+
+        & h2 {
+            color: #27b8a9;
+        }
+    }
+
+    .eletro-r {
+        & h1 {
+            color: #06446d;
+        }
+
+        & h2 {
+            color: #0b86da;
+        }
+    }
+
+    .bebida-r {
+        & h1 {
+            color: #6c0909;
+        }
+
+        & h2 {
+            color: #e73737;
+        }
+    }
+
+    .area-anuncio {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000d1;
+    }
+
+    .anuncio {
+        width: 87%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        height: initial;
+        & button {
+            position: fixed;
+            background-color: #ffffff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            font-size: 1rem;
+            border: 2px solid #0000007a;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        & div {
+            width: 100%;
+            background-color: #f9e4f1;
+            height: 88vh;
+
+            & img {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+
+
+/* .item-img::after{
+    content: '';
+    width: 28%;
+    height: 58%;
+    background: #ffc4c4;
+    border-radius: 186% 40% 134% 36% / 120% 61% 110% 34%;
+} */

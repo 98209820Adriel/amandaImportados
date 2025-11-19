@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amanda Importados</title>
+    <link rel="shortcut icon" href="img/miniLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- Botão "voltar página" -->
+        <button id="prev-btn" @click="prevPage" :disabled="isFlipping || !temPaginaAnterior">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <!-- Book -->
+        <div id="area-book">
+            <div class="categoria-book">
+                <div class="categ-item" :class="{ 'ativo-categ': indiceCategoriaAtual === 0 }" @click="menu(1)"
+                    style=" z-index:5; background-color: #ff7fa2;">
+
+                    <span>Perfumes Feminino</span>
+                    <img src="img/icone/perfume.png" alt="">
+                </div>
+
+                <div class="categ-item" :class="{ 'ativo-categ': indiceCategoriaAtual === 1 }" @click="menu(2)"
+                    style="z-index: 4; right: 22px; background-color: #F27405;">
+
+                    <span>Perfumes Masculino</span>
+                    <img src="img/icone/colonia.png" alt="">
+                </div>
+
+
+
+                <div class="categ-item" :class="{ 'ativo-categ': indiceCategoriaAtual === 2 }" @click="menu(3)"
+                    style="right: 35px; z-index: 3; background-color: #34cfbf;">
+
+                    <span>Cosméticos</span>
+                    <img src="img/icone/creme.png" alt="">
+                </div>
+
+                <div class="categ-item" :class="{ 'ativo-categ': indiceCategoriaAtual === 3 }" @click="menu(4)"
+                    style="right: 47px; z-index: 2; background-color: #0098FF;">
+
+                    <span>Eletrônicos</span>
+                    <img src="img/icone/gadgets.png" alt="">
+                </div>
+
+                <div class="categ-item" :class="{ 'ativo-categ': indiceCategoriaAtual === 4 }" @click="menu(5)"
+                    style="right: 58px; z-index: 1; background-color: #db5656;">
+
+                    <span>Bebidas</span>
+                    <img src="img/icone/licor.png" alt="">
+                </div>
+            </div>
+
+            <div
+                :class="['book', indiceCategoriaAtual === 1 ? 'perf-masc-a' : indiceCategoriaAtual === 0 ? 'perf-femn-a' : indiceCategoriaAtual === 2 ?  'cosmet-a': indiceCategoriaAtual === 3 ? 'eletro-a': indiceCategoriaAtual === 4 ? 'bebida-a': '']">
+
+                <div class="paper" id="p1" :class="{ 'flipped': isFlipping }">
+                    <div class="front">
+
+                        <div
+                            :class="['area-itens', indiceCategoriaAtual === 1 ? 'perf-masc-a' : indiceCategoriaAtual === 0 ? 'perf-femn-a' : indiceCategoriaAtual === 2 ?  'cosmet-a': indiceCategoriaAtual === 3 ? 'eletro-a': indiceCategoriaAtual === 4 ? 'bebida-a': '']">
+                            <div
+                                :class="['titulo', indiceCategoriaAtual === 1 ? 'perf-masc-r' : indiceCategoriaAtual === 0 ? 'perf-femn-r' : indiceCategoriaAtual === 2 ?  'cosmet-r': indiceCategoriaAtual === 3 ? 'eletro-r': indiceCategoriaAtual === 4 ? 'bebida-r': '']">
+                                <h1>Catálogo
+                                    {{ (indiceCategoriaAtual === 0 || indiceCategoriaAtual === 1) ? 'perfume' : '' }}
+                                </h1>
+
+                                <h2>
+                                    {{ 
+                                    indiceCategoriaAtual === 1 ? 'Masculino' :
+                                    indiceCategoriaAtual === 0 ? 'Feminino' :
+                                    indiceCategoriaAtual === 2 ? 'Cosméticos' :
+                                    indiceCategoriaAtual === 3 ? 'Eletrônicos' :
+                                    indiceCategoriaAtual === 4 ? 'Bebidas' :
+                                    ''
+                                    }}
+                                </h2>
+                            </div>
+                            <div class="item" v-for="produto in produtosNaPagina" :key="produto.id">
+
+                                <div class="item-img">
+                                    <div v-if="produto.promo" class="promocao">
+                                        <div>
+                                            <p>Oferta</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        :class="['blob', indiceCategoriaAtual === 1 ? 'perf-masc' : indiceCategoriaAtual === 0 ? 'perf-femn' : indiceCategoriaAtual === 2 ?  'cosmet': indiceCategoriaAtual === 3 ? 'eletro': indiceCategoriaAtual === 4 ? 'bebida': '']">
+                                        <div></div>
+                                    </div>
+                                    <div
+                                        :class="['capacidade', indiceCategoriaAtual === 1 ? 'perf-masc-c' : indiceCategoriaAtual === 0 ? 'perf-femn-c' : indiceCategoriaAtual === 2 ?  'cosmet-c': indiceCategoriaAtual === 3 ? 'eletro-c': indiceCategoriaAtual === 4 ? 'bebida-c': '']">
+                                        <div>{{ produto.capacidade }}</div>
+                                    </div>
+                                    <img :src="produto.img" :alt="produto.descricao">
+                                </div>
+
+                                <div
+                                    :class="['item-info', indiceCategoriaAtual === 1 ? 'perf-masc-d' : indiceCategoriaAtual === 0 ? 'perf-femn-d' : indiceCategoriaAtual === 2 ?  'cosmet-d': indiceCategoriaAtual === 3 ? 'eletro-d': indiceCategoriaAtual === 4 ? 'bebida-d': '']">
+                                    <p>{{ produto.descricao }}</p>
+                                </div>
+
+                                <div
+                                    :class="['item-valores', indiceCategoriaAtual === 1 ? 'perf-masc-t' : indiceCategoriaAtual === 0 ? 'perf-femn-t' : indiceCategoriaAtual === 2 ?  'cosmet-t': indiceCategoriaAtual === 3 ? 'eletro-t': indiceCategoriaAtual === 4 ? 'bebida-t': '']">
+                                    <h3>R$ {{ produto.preco }}</h3>
+                                    <h5 v-if="produto.promo"><s>R${{ produto.promo }}</s></h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="paper" id="p2"></div>
+                <div class="paper" id="p3"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Botão "próxima página" -->
+        <button id="next-btn" @click="nextPage" :disabled="isFlipping || !temProximaPagina">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+
+        <!-- botao whats -->
+        <div class="whats">
+            <a href="https://wa.me/5551991686186" target="_blank">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+        </div>
+
+        <!-- anuncio -->
+         <div v-show="anuncioAtivo" class="area-anuncio" @click="anuncioAtivo = false">
+            <div class="anuncio">
+                <button><i class="bi bi-x-lg"></i></button>
+                <div>
+                    <img src="img/Bem-vindo.jpg" alt="">
+                </div>
+            </div>
+         </div>
+    </div>
+    <script src="console.js"></script>
+    <script>
+        const {
+            createApp
+        } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    anuncioAtivo: true,
+                    categorias: {
+                        perfumeMasculino: dados1,
+                        perfumeFeminino: dados2,
+                        cosmetico: dados3,
+                        eletronico: dados4,
+                        bebida: dados5
+                    },
+
+                    ordemCategorias: [
+                        'perfumeMasculino',
+                        'perfumeFeminino',
+                        'cosmetico',
+                        'eletronico',
+                        'bebida'
+                    ],
+
+                    indiceCategoriaAtual: 0,
+                    paginaAtual: 1,
+                    maxProdutosPorPagina: 6, // valor padrão (desktop)
+                    isFlipping: false,
+                };
+            },
+            computed: {
+                categoriaAtual() {
+                    const chave = this.ordemCategorias[this.indiceCategoriaAtual];
+                    return this.categorias[chave] || [];
+                },
+
+                totalPaginasDaCategoria() {
+                    const totalProdutos = this.categoriaAtual.length;
+                    if (totalProdutos === 0) return 1;
+                    return Math.ceil(totalProdutos / this.maxProdutosPorPagina);
+                },
+
+                produtosNaPagina() {
+                    const inicio = (this.paginaAtual - 1) * this.maxProdutosPorPagina;
+                    const fim = inicio + this.maxProdutosPorPagina;
+                    return this.categoriaAtual.slice(inicio, fim);
+                },
+
+                temProximaPagina() {
+                    if (this.paginaAtual < this.totalPaginasDaCategoria) return true;
+                    if (this.indiceCategoriaAtual < this.ordemCategorias.length - 1) return true;
+                    return false;
+                },
+
+                temPaginaAnterior() {
+                    if (this.paginaAtual > 1) return true;
+                    if (this.indiceCategoriaAtual > 0) return true;
+                    return false;
+                },
+            },
+            methods: {
+                triggerFlip(callback) {
+                    if (this.isFlipping) return;
+
+                    this.isFlipping = true;
+
+                    setTimeout(() => {
+                        callback();
+                        this.isFlipping = false;
+                    }, 600); // igual ao transition do CSS
+                },
+
+                nextPage() {
+                    if (!this.temProximaPagina) return;
+
+                    if (this.paginaAtual < this.totalPaginasDaCategoria) {
+                        this.triggerFlip(() => {
+                            this.paginaAtual++;
+                        });
+                    } else if (this.indiceCategoriaAtual < this.ordemCategorias.length - 1) {
+                        this.triggerFlip(() => {
+                            this.indiceCategoriaAtual++;
+                            this.paginaAtual = 1;
+                        });
+                    }
+                },
+
+                prevPage() {
+                    if (!this.temPaginaAnterior) return;
+
+                    if (this.paginaAtual > 1) {
+                        this.triggerFlip(() => {
+                            this.paginaAtual--;
+                        });
+                    } else if (this.indiceCategoriaAtual > 0) {
+                        this.triggerFlip(() => {
+                            this.indiceCategoriaAtual--;
+
+                            const chaveAnterior = this.ordemCategorias[this.indiceCategoriaAtual];
+                            const totalAnterior = Math.ceil(
+                                this.categorias[chaveAnterior].length / this.maxProdutosPorPagina
+                            );
+                            this.paginaAtual = totalAnterior;
+                        });
+                    }
+                },
+
+                menu(valor) {
+                    const novoIndice = valor - 1;
+                    if (novoIndice < 0 || novoIndice >= this.ordemCategorias.length) return;
+                    if (novoIndice === this.indiceCategoriaAtual) return;
+
+                    this.triggerFlip(() => {
+                        this.indiceCategoriaAtual = novoIndice;
+                        this.paginaAtual = 1;
+                    });
+                },
+
+                handleResize() {
+                    const isMobile = window.innerWidth <= 768; // mesmo breakpoint do seu CSS
+
+                    // Define quantos produtos por página
+                    this.maxProdutosPorPagina = isMobile ? 3 : 6;
+
+                    // Garante que a página atual não fique fora do limite
+                    if (this.paginaAtual > this.totalPaginasDaCategoria) {
+                        this.paginaAtual = this.totalPaginasDaCategoria;
+                    }
+                },
+            },
+            mounted() {
+                console.log('Vue ativo, book pronto');
+                // Ajusta logo na carga inicial
+                this.handleResize();
+
+                // Atualiza sempre que a tela mudar de tamanho
+                window.addEventListener('resize', this.handleResize);
+            },
+            unmounted() {
+                window.removeEventListener('resize', this.handleResize);
+            },
+        }).mount("#app");
+    </script>
+
+
+</body>
+
+</html>
