@@ -529,7 +529,40 @@ let dados4 = [{
         capacidade: '256 GB'
     },
 
+    {
+        id: 1135,
+        img: 'img/elec/40.png',
+        preco: '2109,90',
+        promo: '',
+        descricao: 'Tablet Samsung Galaxy Tab S10 FE ',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
 
+
+
+    {
+        id: 13556,
+        img: 'img/elec/45.png',
+        preco: '2699,90',
+        promo: '',
+        descricao: 'Tablet Samsung Galaxy Tab S10 FE+',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
+
+    {
+        id: 1355,
+        img: 'img/elec/36.png',
+        preco: '2149,90',
+        promo: '',
+        descricao: 'Apple iPad 11ª Geração',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
 
 
     {
@@ -589,40 +622,7 @@ let dados4 = [{
         subcategoria: '',
         capacidade: '128 GB'
     },
-    {
-        id: 1135,
-        img: 'img/elec/40.png',
-        preco: '2109,90',
-        promo: '',
-        descricao: 'Tablet Samsung Galaxy Tab S10 FE ',
-        categoria: 'eletronico',
-        subcategoria: '',
-        capacidade: '128 GB'
-    },
 
-
-
-    {
-        id: 13556,
-        img: 'img/elec/45.png',
-        preco: '2699,90',
-        promo: '',
-        descricao: 'Tablet Samsung Galaxy Tab S10 FE+',
-        categoria: 'eletronico',
-        subcategoria: '',
-        capacidade: '128 GB'
-    },
-
-    {
-        id: 1355,
-        img: 'img/elec/36.png',
-        preco: '2149,90',
-        promo: '',
-        descricao: 'Apple iPad 11ª Geração',
-        categoria: 'eletronico',
-        subcategoria: '',
-        capacidade: '128 GB'
-    },
 
 ];
 
