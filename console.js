@@ -451,7 +451,7 @@ let dados3 = [{
         capacidade: '236 ml'
     },
 
-       {
+    {
         id: 1367,
         img: 'img/cos/89.png',
         preco: '134,90',
@@ -466,16 +466,6 @@ let dados3 = [{
 
 // dados de eletronicos
 let dados4 = [{
-        id: 111,
-        img: 'img/elec/31.png',
-        preco: '6269,90',
-        promo: '',
-        descricao: 'Celular Apple iPhone 16 Pro',
-        categoria: 'eletronico',
-        subcategoria: '',
-        capacidade: '128 GB'
-    },
-    {
         id: 222,
         img: 'img/elec/35.png',
         preco: '3999,90',
@@ -485,6 +475,7 @@ let dados4 = [{
         subcategoria: '',
         capacidade: '128 GB'
     },
+
     {
         id: 333,
         img: 'img/elec/34.png',
@@ -495,6 +486,28 @@ let dados4 = [{
         subcategoria: '',
         capacidade: '256 GB'
     },
+    {
+        id: 6666,
+        img: 'img/elec/44.png',
+        preco: '4259,90',
+        promo: '',
+        descricao: 'Apple Iphone 16 Plus',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
+    {
+        id: 111,
+        img: 'img/elec/31.png',
+        preco: '6269,90',
+        promo: '',
+        descricao: 'Celular Apple iPhone 16 Pro',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
+
+
     {
         id: 444,
         img: 'img/elec/33.png',
@@ -518,16 +531,7 @@ let dados4 = [{
 
 
 
-    {
-        id: 6666,
-        img: 'img/elec/44.png',
-        preco: '4259,90',
-        promo: '',
-        descricao: 'Apple Iphone 16 Plus',
-        categoria: 'eletronico',
-        subcategoria: '',
-        capacidade: '128 GB'
-    },
+
     {
         id: 7777,
         img: 'img/elec/38.png',
@@ -573,6 +577,18 @@ let dados4 = [{
     },
 
 
+
+
+    {
+        id: 12342,
+        img: 'img/elec/41.png',
+        preco: '94,90',
+        promo: '',
+        descricao: 'Fone de Ouvido Sem Fio Xiaomi Redmi Buds 6 Play',
+        categoria: 'eletronico',
+        subcategoria: '',
+        capacidade: '128 GB'
+    },
     {
         id: 1135,
         img: 'img/elec/40.png',
@@ -584,12 +600,14 @@ let dados4 = [{
         capacidade: '128 GB'
     },
 
+
+
     {
-        id: 12342,
-        img: 'img/elec/41.png',
-        preco: '94,90',
+        id: 13556,
+        img: 'img/elec/45.png',
+        preco: '2699,90',
         promo: '',
-        descricao: 'Fone de Ouvido Sem Fio Xiaomi Redmi Buds 6 Play',
+        descricao: 'Tablet Samsung Galaxy Tab S10 FE+',
         categoria: 'eletronico',
         subcategoria: '',
         capacidade: '128 GB'
