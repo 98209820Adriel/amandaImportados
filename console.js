@@ -12,7 +12,7 @@ let dados1 = [{
     {
         id: 2,
         img: 'img/fem/15.png',
-        preco: '184,90',
+        preco: '234,90',
         promo: '',
         descricao: 'Perfume Lattafa Yara Moi Eau de Parfum Feminino',
         categoria: 'perfume',
