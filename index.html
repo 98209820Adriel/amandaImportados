@@ -8,6 +8,13 @@
     <title>Amanda Importados</title>
     <link rel="shortcut icon" href="img/miniLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- fonts google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -85,7 +92,7 @@
                                     }}
                                 </h2>
                             </div>
-                            <div class="item" v-for="produto in produtosNaPagina" :key="produto.id">
+                            <div class="item" v-for="produto in produtosNaPagina" :key="produto.id" @click="ativarModal(produto)">
 
                                 <div class="item-img">
                                     <div v-if="produto.promo" class="promocao">
@@ -134,7 +141,7 @@
 
         <!-- botao whats -->
         <div class="whats">
-            <a href="https://wa.me/5551991686186" target="_blank">
+            <a href="https://wa.me/5551991686186?text=Ola%2C%20queria%20saber%20mais%20sobre%20os%20produtos%20do%20catalogo." target="_blank">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>
@@ -153,21 +160,31 @@
         <div class="modal-item">
             <div class="modal-area">
                 <div class="modal-header">
-                    <button>
+                    <button @click="desativarModal()" >
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="modal-img">
-                        <img src="img/cos/78.png" alt="">
+                        <img :src="itemModal.img" alt="">
+                    </div>
+                    <div v-if="itemModal.capacidade !== 'un' " class="modal-capacidade">
+                        <div>
+                            {{ itemModal.capacidade }}
+                        </div>
                     </div>
                     <div class="modal-title">
-                        <h2>Perfume Lattafa Yara Moi Eau de Parfum Feminino</h2> <h3>R$ 235,90</h3>
+                        <h2>{{ itemModal.descricao }}</h2>
+                        <h3>R$ {{ itemModal.preco }}</h3>
+                        <h4 v-if="itemModal.promo"><s>R$ {{ itemModal.promo }}</s></h4>
                     </div>
-                    <div class="modal-desc"></div>
+                    <div class="modal-desc">
+                        <h6>Detalhes do produto:</h6>
+                        <p>{{ itemModal.detalhe }}</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button><i class="bi bi-cart-check-fill"></i> Fazer pedido</button>
+                    <button @click="urlProduto(itemModal.descricao)"><i class="bi bi-cart-check-fill"></i> Fazer pedido</button>
                 </div>
             </div>
         </div>
@@ -202,6 +219,7 @@
                     paginaAtual: 1,
                     maxProdutosPorPagina: 6, // valor padrão (desktop)
                     isFlipping: false,
+                    itemModal: {}
                 };
             },
             computed: {
@@ -303,6 +321,21 @@
                         this.paginaAtual = this.totalPaginasDaCategoria;
                     }
                 },
+                ativarModal(item) {
+                    console.log(item)
+                    const elemento = document.querySelector('.modal-item');
+                    elemento.style.display = 'flex';
+                    this.itemModal = item;
+                },
+                desativarModal() {
+                    const elemento = document.querySelector('.modal-item');
+                    elemento.style.display = 'none';
+                },
+
+                urlProduto(desc){
+                    const url = `https://wa.me/5551991686186?text=Ola%2C%20desejo%20saber%20mais%20sobre%20esse%20produto%3A%20${desc}`;
+                    window.open(url, "_blank");
+                }
             },
             mounted() {
                 console.log('Vue ativo, book pronto');
