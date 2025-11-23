@@ -140,14 +140,37 @@
         </div>
 
         <!-- anuncio -->
-         <div v-show="anuncioAtivo" class="area-anuncio" @click="anuncioAtivo = false">
+        <div v-show="anuncioAtivo" class="area-anuncio" @click="anuncioAtivo = false">
             <div class="anuncio">
                 <button><i class="bi bi-x-lg"></i></button>
                 <div>
                     <img src="img/Bem-vindo.jpg" alt="">
                 </div>
             </div>
-         </div>
+        </div>
+
+
+        <div class="modal-item">
+            <div class="modal-area">
+                <div class="modal-header">
+                    <button>
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-img">
+                        <img src="img/cos/78.png" alt="">
+                    </div>
+                    <div class="modal-title">
+                        <h2>Perfume Lattafa Yara Moi Eau de Parfum Feminino</h2> <h3>R$ 235,90</h3>
+                    </div>
+                    <div class="modal-desc"></div>
+                </div>
+                <div class="modal-footer">
+                    <button><i class="bi bi-cart-check-fill"></i> Fazer pedido</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="console.js"></script>
     <script>

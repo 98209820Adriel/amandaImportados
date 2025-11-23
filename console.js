@@ -12,7 +12,7 @@ let dados1 = [{
     {
         id: 2,
         img: 'img/fem/15.png',
-        preco: '234,90',
+        preco: '184,90',
         promo: '',
         descricao: 'Perfume Lattafa Yara Moi Eau de Parfum Feminino',
         categoria: 'perfume',
@@ -32,7 +32,7 @@ let dados1 = [{
     {
         id: 4,
         img: 'img/fem/17.png',
-        preco: '189,90',
+        preco: '234,90',
         promo: '',
         descricao: 'Perfume Lattafa Fakhar Eau de Parfum Feminino',
         categoria: 'perfume',
